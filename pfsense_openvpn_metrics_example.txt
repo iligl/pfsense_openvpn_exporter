@@ -1,0 +1,16 @@
+# HELP openvpn_server_client_received_bytes_total Amount of data received over a connection on the VPN server, in bytes.
+# TYPE openvpn_server_client_received_bytes_total counter
+openvpn_server_client_received_bytes_total{common_name="...",connection_time="1716952314",real_address="...",username="...",virtual_address="10.0.8.123"} 343728
+openvpn_server_client_received_bytes_total{common_name="...",connection_time="1716186318",real_address="...",username="...",virtual_address="10.0.8.121"} 11802803
+openvpn_server_client_received_bytes_total{common_name="...",connection_time="1716301604",real_address="...",username="...",virtual_address="10.0.8.122"} 7100173
+# HELP openvpn_server_client_sent_bytes_total Amount of data sent over a connection on the VPN server, in bytes.
+# TYPE openvpn_server_client_sent_bytes_total counter
+openvpn_server_client_sent_bytes_total{common_name="...",connection_time="1716952314",real_address="...",username="...",virtual_address="10.0.8.123"} 282751
+openvpn_server_client_sent_bytes_total{common_name="...",connection_time="1716186318",real_address="...",username="...",virtual_address="10.0.8.121"} 6604264
+openvpn_server_client_sent_bytes_total{common_name="...",connection_time="1716301604",real_address="...",username="...",virtual_address="10.0.8.122"} 4776849
+# HELP openvpn_server_connected_clients Number Of Connected Clients
+# TYPE openvpn_server_connected_clients gauge
+openvpn_server_connected_clients{} 3
+# HELP openvpn_up Whether scraping OpenVPN's metrics was successful.
+# TYPE openvpn_up gauge
+openvpn_up{} 1
