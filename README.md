@@ -44,6 +44,6 @@ If you would like to contribute, please fork the repository and submit a pull re
 
 ## Acknowledgments
 
-    Thanks to the developers of pfSense for providing an excellent firewall solution.
-    Thanks to the Prometheus team for their great monitoring tools.
-    Thanks to the [kumina/openvpn_exporter](https://github.com/kumina/openvpn_exporter) repository for the inspiration and metrics design.
+Thanks to the developers of pfSense for providing an excellent firewall solution.
+Thanks to the Prometheus team for their great monitoring tools.
+Thanks to the [kumina/openvpn_exporter](https://github.com/kumina/openvpn_exporter) repository for the inspiration and metrics design.
