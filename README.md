@@ -8,13 +8,21 @@ Simple PHP endpoint to obtain OpenVPN service metrics on a pfSense Firewall for 
 2. Create a file in Diagnostics > Filer > Files > add
    Edit fields:
        **File:** "/usr/local/www/pfsense_openvpn_exporter.php"
+   
        **Description:** "openVPN metrics exporter"
+   
        **Permissions:** left blank or 622
+   
        **File contents:** place php code here
+   
     under **Command to run after file save/sync.** edit:
+   
        **Script/Command:** nginx -s reload
+   
        **Execute mode:** Background (default)
+   
 3. Press **Save**
+   
 4. Go to your pfsense_ip_server:pfsense_port/pfsense_openvpn_exporter.php  
 
 ## Example of Use
