@@ -3,16 +3,19 @@
 Simple PHP endpoint to obtain OpenVPN service metrics on a pfSense Firewall for use with Prometheus.
 
 ## How to deploy PHP Endpoint on pfSense server
+1. Install Filer package to your pFsense
 
-1. Copy `pfsense_openvpn_exporter.php` file to the root directory for NGINX (usually at `/usr/local/www`). You can do this using SSH/SCP, for example:
-    ```sh
-    scp pfsense_openvpn_exporter.php root@<pfsense_ip_server>:/usr/local/www/
-    ```
-
-2. Now, it's possible to get OpenVPN metrics by accessing:
-    ```
-    http://<pfsense_ip_server>/pfsense_openvpn_exporter.php
-    ```
+2. Create a file in Diagnostics > Filer > Files > add
+   Edit fields:
+       **File:** "/usr/local/www/pfsense_openvpn_exporter.php"
+       **Description:** "openVPN metrics exporter"
+       **Permissions:** left blank or 622
+       **File contents:** place php code here
+    under **Command to run after file save/sync.** edit:
+       **Script/Command:** nginx -s reload
+       **Execute mode:** Background (default)
+3. Press **Save**
+4. Go to your pfsense_ip_server:pfsense_port/pfsense_openvpn_exporter.php  
 
 ## Example of Use
 
@@ -21,15 +24,14 @@ Once deployed, you can configure Prometheus to scrape metrics from the PHP endpo
 scrape_configs:
   - job_name: 'pfsense_openvpn'
     static_configs:
-      - targets: ['<pfsense_ip_server>']
+      - targets: ['<pfsense_ip_server:pfsense_port>']
         labels:
           instance: 'pfsense_openvpn'
+        metrics_path: '/pfsense_openvpn_exporter.php'
 ```
-Replace <pfsense_ip_server> with the IP address of your pfSense server.
+Replace <pfsense_ip_server> with the IP address of your pfSense server and pfsense_port with your console managment port
 
-## Proposed Metrics
-
-The metrics provided by this exporter are based on those proposed in the [kumina/openvpn_exporter](https://github.com/kumina/openvpn_exporter) repository. This ensures compatibility and ease of integration with existing monitoring setups that use these metrics.
+Add a [dashboard](https://github.com/iligl/pfsense_openvpn_exporter/blob/main/grafana_pfsense_vpn.json) to your grafana. 
 
 ## Troubleshooting
 
@@ -38,12 +40,6 @@ If you encounter issues, ensure that:
     The pfsense_openvpn_exporter.php file has been correctly copied to the /usr/local/www directory.
     NGINX is running and serving files from the /usr/local/www directory.
 
-## Contributing
-
-If you would like to contribute, please fork the repository and submit a pull request. We welcome all improvements and suggestions!
 
 ## Acknowledgments
-
-Thanks to the developers of pfSense for providing an excellent firewall solution.
-Thanks to the Prometheus team for their great monitoring tools.
-Thanks to the [kumina/openvpn_exporter](https://github.com/kumina/openvpn_exporter) repository for the inspiration and metrics design.
+Forked from [vielca project](https://github.com/vielca/pfsense_openvpn_exporter), dashbord added
